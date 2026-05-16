@@ -1,3 +1,6 @@
 .env
 bot/.env
 bot/venv/
+worker/venv/
+dashboard/node_modules/
+dashboard/.next/
