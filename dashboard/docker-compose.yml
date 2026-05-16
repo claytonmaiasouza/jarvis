@@ -1,0 +1,17 @@
+services:
+  dashboard:
+    build: .
+    restart: unless-stopped
+    env_file: .env.local
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jarvis-dashboard.rule=Host(`jarvis.guiafinanceiro.pro`)"
+      - "traefik.http.routers.jarvis-dashboard.entrypoints=websecure"
+      - "traefik.http.routers.jarvis-dashboard.tls.certresolver=letsencrypt"
+      - "traefik.http.services.jarvis-dashboard.loadbalancer.server.port=3000"
+    networks:
+      - fintrack_default
+
+networks:
+  fintrack_default:
+    external: true
